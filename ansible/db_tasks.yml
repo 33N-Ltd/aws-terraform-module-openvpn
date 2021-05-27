@@ -27,8 +27,9 @@
       gpgcheck: "{{ MariaDB_repo_gpgcheck }}"
       gpgkey: "{{ MariaDB_repo_gpg_url }}"
     register: mariadb_repo
+    when: ansible_distribution == 'CentOS'
 
-  - name: Install MariaDB Client
+  - name: Install MariaDB Client for CentOS
     yum:
       name: "{{ item }}"
       state: latest
@@ -36,6 +37,16 @@
       - MariaDB-client
       - mariadb-libs
       - MySQL-python
+    when: ansible_distribution == 'CentOS'
+
+  - name: Install MySQL Client for Ubuntu
+    apt:
+      pkg: "{{ item }}"
+      state: latest
+    with_items:
+      - mysql-client
+      - libmysqlclient20
+    when: ansible_distribution == 'Ubuntu'
 
   - name: Copy .my.cnf file with credentials
     copy:
@@ -109,22 +120,22 @@
     register: openvpn_stop_for_db_update
 
   - name: Migrate certification data to new database
-    command: /usr/local/openvpn_as/scripts/dbcvt -t certs -s sqlite:////usr/local/openvpn_as/etc/db/certs.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_url }}/as_certs
+    command: /usr/local/openvpn_as/scripts/dbcvt -t certs -s sqlite:////usr/local/openvpn_as/etc/db/certs.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_host }}/as_certs
     when: openvpn_stop_for_db_update.changed
     register: certs_migrated
 
   - name: Migrate configuration data to new database
-    command: /usr/local/openvpn_as/scripts/dbcvt -t config -s sqlite:////usr/local/openvpn_as/etc/db/config.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_url }}/as_config
+    command: /usr/local/openvpn_as/scripts/dbcvt -t config -s sqlite:////usr/local/openvpn_as/etc/db/config.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_host }}/as_config
     when: certs_migrated.changed
     register: config_migrated
 
   - name: Migrate log data to new database
-    command: /usr/local/openvpn_as/scripts/dbcvt -t log -s sqlite:////usr/local/openvpn_as/etc/db/log.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_url }}/as_log
+    command: /usr/local/openvpn_as/scripts/dbcvt -t log -s sqlite:////usr/local/openvpn_as/etc/db/log.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_host }}/as_log
     when: config_migrated.changed
     register: logs_migrated
 
   - name: Migrate user data to new database
-    command: /usr/local/openvpn_as/scripts/dbcvt -t user_prop -s sqlite:////usr/local/openvpn_as/etc/db/userprop.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_url }}/as_userprop
+    command: /usr/local/openvpn_as/scripts/dbcvt -t user_prop -s sqlite:////usr/local/openvpn_as/etc/db/userprop.db -d mysql://{{ openvpn_database_user }}:{{ openvpn_database_password }}@{{ openvpn_database_host }}/as_userprop
     when: logs_migrated.changed
     register: users_migrated
 
