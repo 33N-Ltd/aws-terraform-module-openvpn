@@ -61,7 +61,7 @@ echo "Updating the OpenVPN configuration."
 /usr/local/openvpn_as/scripts/sacli start
 
 # Activate the license
-/usr/local/openvpn_as/scripts/sacli --value "${SUBSCRIPTION_LICENSE_KEY}" LoadSubscription
+/usr/local/openvpn_as/scripts/sacli --value ${SUBSCRIPTION_LICENSE_KEY} LoadSubscription
 /usr/local/openvpn_as/scripts/sacli start
 
 # Restart OpenVPN
