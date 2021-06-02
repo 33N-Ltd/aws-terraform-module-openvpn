@@ -13,6 +13,5 @@ data "template_file" "user_data" {
     private_network_access_2  = var.private_network_access_2
     tunnel_setting            = var.vpn_tunnel_setting
     ssm_parameter_license_key = var.ssm_parameter_license_key
-    SUBSCRIPTION_LICENSE_KEY  = ""
   }
 }
