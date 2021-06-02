@@ -25,13 +25,13 @@
 
     - name: Update | Wait for 10 seconds
       pause:
-      seconds: 10
+       seconds: 10
       when: ( full_system_update|bool )
 
     - name: Update | Wait for the system to reboot
       wait_for_connection:
-      connect_timeout: 20
-      sleep: 5
-      delay: 5
-      timeout: 60
+       connect_timeout: 20
+       sleep: 5
+       delay: 5
+       timeout: 60
       when: ( full_system_update|bool )
