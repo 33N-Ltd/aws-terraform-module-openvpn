@@ -273,6 +273,5 @@ variable "vpn_tunnel_setting" {
 }
 
 variable "ssm_parameter_license_key" {
-  default = "SUBSCRIPTION_LICENSE_KEY"
   description = "Set the SSM parameter for the OpenVPN subscription license key"
 }
