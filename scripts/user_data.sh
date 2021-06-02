@@ -3,9 +3,11 @@
 # Log output from this user_data script.
 exec > >(tee /var/log/user-data.log|logger -t user-data ) 2>&1
 
-# Set the password for the openvpn user.
+# Retrieve the parameters needed for authentication and licensing.
 export OPENVPN_PASSWORD=`aws --region ${region} ssm get-parameter --name ${ssm_parameter_name} --query 'Parameter.Value' --output text --with-decryption`
+export SUBSCRIPTION_LICENSE_KEY=`aws --region ${region} ssm get-parameter --name ${ssm_parameter_license_key} --query 'Parameter.Value' --output text --with-decryption`
 
+# Set the password for activation step
 echo "#Set password for openvpn user"
 echo $OPENVPN_PASSWORD | passwd openvpn --stdin 
 
@@ -56,6 +58,10 @@ echo "Updating the OpenVPN configuration."
 
 # Turn on/off tunneling VPN traffic
 /usr/local/openvpn_as/scripts/sacli --key "vpn.client.routing.reroute_gw" --value "${tunnel_setting}" ConfigPut
+/usr/local/openvpn_as/scripts/sacli start
+
+# Activate the license
+/usr/local/openvpn_as/scripts/sacli --value "${SUBSCRIPTION_LICENSE_KEY}" LoadSubscription
 /usr/local/openvpn_as/scripts/sacli start
 
 # Restart OpenVPN
