@@ -271,3 +271,7 @@ variable "vpn_tunnel_setting" {
   default     = false
   description = "Set the VPN tunneling mode to be ON or OFF"
 }
+
+variable "ssm_parameter_license_key" {
+  description = "Set the SSM parameter for the OpenVPN subscription license key"
+}
