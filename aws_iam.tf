@@ -79,11 +79,6 @@ resource "aws_iam_role_policy_attachment" "ssm_attach_ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
-resource "aws_iam_role_policy_attachment" "ssm_attach_ec2_role" {
-  role       = aws_iam_role.openvpn_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
-}
-
 resource "aws_iam_role_policy_attachment" "ssm_attach_clw_agent" {
   role       = aws_iam_role.openvpn_role.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
