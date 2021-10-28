@@ -1,5 +1,5 @@
 data "null_data_source" "asg_tags" {
-  count = "${length(keys(var.common_tags))}"
+  count = length(keys(var.common_tags))
 
   inputs = {
     key                 = element(keys(var.common_tags), count.index)
