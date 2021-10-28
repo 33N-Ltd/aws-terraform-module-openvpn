@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "openvpn" {
     create_before_destroy = true
   }
 
-  tags = flatten(["${data.null_data_source.asg_tags.*.outputs}",
+  tags = flatten([data.null_data_source.asg_tags.*.outputs,
     map("key", "Name", "value", "${upper(var.environment)}-OPENVPN-EC2-ASG", "propagate_at_launch", true),
     map("key", "AWSInspectorEnabled", "value", "true", "propagate_at_launch", true),
   ])
