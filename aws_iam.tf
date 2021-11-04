@@ -33,13 +33,19 @@ data "aws_iam_policy_document" "openvpn_eip" {
 
   statement {
     actions = [
-      "s3:ListBucket",
-      "s3:HeadBucket",
-      "s3:ListObjects",
-      "s3:GetObject"
+      "s3:ListBucket"
     ]
 
     resources = ["arn:aws:s3:::${aws_s3_bucket.ssm_ansible_bucket.id}"]
+    effect    = "Allow"
+  }
+
+  statement {
+    actions = [
+      "s3:*Object"
+    ]
+
+    resources = ["arn:aws:s3:::${aws_s3_bucket.ssm_ansible_bucket.id}/*"]
     effect    = "Allow"
   }
 
