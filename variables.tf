@@ -236,6 +236,10 @@ variable "private_network_access_2" {
   description = "Set the CIDR range of private network the VPN server needs to access"
 }
 
+variable "private_network_access_3" {
+  description = "Set the CIDR range of private network the VPN server needs to access"
+}
+
 variable "deletion_protection" {
   type        = bool
   default     = true
