@@ -55,6 +55,8 @@ echo "Updating the OpenVPN configuration."
 /usr/local/openvpn_as/scripts/sacli start
 /usr/local/openvpn_as/scripts/sacli --key "vpn.server.routing.private_network.1" --value "${private_network_access_2}" ConfigPut
 /usr/local/openvpn_as/scripts/sacli start
+/usr/local/openvpn_as/scripts/sacli --key "vpn.server.routing.private_network.2" --value "${private_network_access_3}" ConfigPut
+/usr/local/openvpn_as/scripts/sacli start
 
 # Turn on/off tunneling VPN traffic
 /usr/local/openvpn_as/scripts/sacli --key "vpn.client.routing.reroute_gw" --value "${tunnel_setting}" ConfigPut

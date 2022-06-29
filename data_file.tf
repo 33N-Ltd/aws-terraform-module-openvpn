@@ -11,6 +11,7 @@ data "template_file" "user_data" {
     ssm_parameter_name        = var.ssm_parameter_name
     private_network_access_1  = var.private_network_access_1
     private_network_access_2  = var.private_network_access_2
+    private_network_access_3  = var.private_network_access_3
     tunnel_setting            = var.vpn_tunnel_setting
     ssm_parameter_license_key = var.ssm_parameter_license_key
   }
