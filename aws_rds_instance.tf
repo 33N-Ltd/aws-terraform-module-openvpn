@@ -19,7 +19,6 @@ resource "aws_rds_cluster_instance" "db_instance" {
 }
 
 resource "aws_rds_cluster" "db_cluster" {
-  allow_major_version_upgrade  = "true"
   cluster_identifier           = var.rds_cluster_identifier
   snapshot_identifier          = var.snapshot_identifier
   engine                       = var.rds_engine
