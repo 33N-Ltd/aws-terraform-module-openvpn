@@ -20,6 +20,7 @@ resource "aws_rds_cluster_instance" "db_instance" {
 resource "aws_rds_cluster" "db_cluster" {
   cluster_identifier           = var.rds_cluster_identifier
   snapshot_identifier          = var.snapshot_identifier
+  engine_version               = var.rds_engine_version
   database_name                = var.rds_database_name
   master_username              = var.rds_master_name
   master_password              = var.rds_master_password
