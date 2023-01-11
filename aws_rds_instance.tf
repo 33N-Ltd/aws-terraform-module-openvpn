@@ -3,7 +3,7 @@ resource "aws_rds_cluster_instance" "db_instance" {
   identifier           = var.rds_instance_name
   cluster_identifier   = aws_rds_cluster.db_cluster.id
   instance_class       = var.db_instance_type
-  engine_version               = var.rds_engine_version
+  engine               = var.rds_engine
   publicly_accessible  = false
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.id
   tags = merge(
@@ -19,10 +19,10 @@ resource "aws_rds_cluster_instance" "db_instance" {
 }
 
 resource "aws_rds_cluster" "db_cluster" {
-  allow_major_version_upgrade = "true"
+  allow_major_version_upgrade  = "true"
   cluster_identifier           = var.rds_cluster_identifier
   snapshot_identifier          = var.snapshot_identifier
-#  engine_version               = var.rds_engine_version
+  engine                       = var.rds_engine
   database_name                = var.rds_database_name
   master_username              = var.rds_master_name
   master_password              = var.rds_master_password
