@@ -44,6 +44,10 @@ variable "key_name" {
   description = "Set the EC2 Key name"
 }
 
+variable "rds_engine" {
+  type    = string
+  default = "aurora-mysql"
+}
 
 variable "rds_backup_retention_period" {
   type    = string
@@ -200,7 +204,7 @@ variable "epel_repo_url" {
 }
 
 variable "run_full_system_update" {
-  default = false
+  default     = false
   description = "Set True or False to run a full system update on the server"
 }
 
