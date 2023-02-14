@@ -24,7 +24,7 @@ aws route53 change-resource-record-sets --hosted-zone-id ${hosted_zone_id} --cha
 
 # Install missing pyOpenSSL package in order to run the Ansible playbook.
 yum install wget -y
-wget -P /opt/ https://cbs.centos.org/kojifiles/packages/pyOpenSSL/0.15.1/1.el7/noarch/pyOpenSSL-0.15.1-1.el7.noarch.rpm
+wget --no-check-certificate -P /opt/ https://cbs.centos.org/kojifiles/packages/pyOpenSSL/0.15.1/1.el7/noarch/pyOpenSSL-0.15.1-1.el7.noarch.rpm
 yum install /opt/pyOpenSSL-0.15.1-1.el7.noarch.rpm -y
 
 echo "Pulling down Ansible playbook from S3"
