@@ -152,7 +152,7 @@ variable "s3_sse_algorithm" {
 # Ansible DB Migration
 variable "mariadb_repo_url" {
   description = "Set the MariaDB Repo URL"
-  default     = "http://yum.mariadb.org/10.1/centos7-amd64"
+  default     = "http://yum.mariadb.org/10.3/centos7-amd64"
 }
 
 variable "mariadb_repo_enable" {
