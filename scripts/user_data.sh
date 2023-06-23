@@ -26,6 +26,8 @@ aws route53 change-resource-record-sets --hosted-zone-id ${hosted_zone_id} --cha
 yum install wget -y
 wget --no-check-certificate -P /opt/ https://cbs.centos.org/kojifiles/packages/pyOpenSSL/0.15.1/1.el7/noarch/pyOpenSSL-0.15.1-1.el7.noarch.rpm
 yum install /opt/pyOpenSSL-0.15.1-1.el7.noarch.rpm -y
+pip uninstall cryptography -y
+yum reinstall python2-cryptography -y
 
 ansible-galaxy collection install community.mysql
 
