@@ -95,3 +95,8 @@ resource "aws_iam_role_policy_attachment" "ssm_attach_clw_logs" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "encrypted_ssm_attach" {
+  role       = aws_iam_role.openvpn_role.name
+  policy_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/encrypted-ssm-policy"
+}
+
