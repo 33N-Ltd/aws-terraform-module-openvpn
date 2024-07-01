@@ -27,7 +27,8 @@ yum install wget -y
 wget --no-check-certificate -P /opt/ https://cbs.centos.org/kojifiles/packages/pyOpenSSL/0.15.1/1.el7/noarch/pyOpenSSL-0.15.1-1.el7.noarch.rpm
 pip uninstall cryptography -y
 yum install /opt/pyOpenSSL-0.15.1-1.el7.noarch.rpm -y
-#yum reinstall python2-cryptography -y
+pip uninstall cryptography -y
+yum reinstall python2-cryptography -y
 
 ansible-galaxy collection install community.mysql
 
