@@ -31,12 +31,8 @@
 
   - name: Install MariaDB Client for CentOS
     yum:
-      name: "{{ item }}"
+      name: mariadb-server
       state: latest
-    with_items:
-      - MariaDB-client
-      - mariadb-libs
-      - MySQL-python
     when: ansible_distribution == 'RedHat'
 
 
