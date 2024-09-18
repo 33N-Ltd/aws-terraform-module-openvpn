@@ -64,7 +64,6 @@ echo "Updating the OpenVPN configuration."
 # Restart OpenVPN
 echo "Restarting OpenVPN service"
 service openvpnas restart
-/usr/local/openvpn_as/scripts/sacli start
 
 # Ansible clean up
 rm -f /opt/openvpn_ssl_ansible_playbook.yaml

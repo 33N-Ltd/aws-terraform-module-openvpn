@@ -35,8 +35,6 @@
       state: latest
     when: ansible_distribution == 'RedHat'
 
-
-
   - name: Install MySQL Client for Ubuntu
     apt:
       pkg: "{{ item }}"
