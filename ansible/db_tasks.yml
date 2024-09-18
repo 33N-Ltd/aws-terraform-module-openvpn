@@ -37,7 +37,9 @@
       - MariaDB-client
       - mariadb-libs
       - MySQL-python
-    when: ansible_distribution == 'CentOS'
+    when: ansible_distribution == 'RedHat'
+
+
 
   - name: Install MySQL Client for Ubuntu
     apt:

@@ -34,6 +34,12 @@
         state: present
       when: ansible_distribution == 'CentOS'
 
+    - name: Certbot | Install Certbot for RedHat
+      yum:
+        name: certbot
+        state: present
+      when: ansible_distribution == 'RedHat'
+
     - name: Cerbot | App Cerbot repository for Ubuntu
       apt_repository:
         repo: ppa:certbot/certbot
