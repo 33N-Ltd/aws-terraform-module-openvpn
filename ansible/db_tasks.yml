@@ -29,7 +29,17 @@
     register: mariadb_repo
     when: ansible_distribution == 'CentOS'
 
-  - name: Install MariaDB Client for RedHat
+  - name: Install MariaDB Client for CentOS
+    yum:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - MariaDB-client
+      - mariadb-libs
+      - MySQL-python
+    when: ansible_distribution == 'CentOS'
+
+  - name: Install MariaDB Server for RedHat
     yum:
       name: mariadb-server
       state: latest
