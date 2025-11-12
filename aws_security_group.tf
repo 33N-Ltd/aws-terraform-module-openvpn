@@ -3,14 +3,6 @@ resource "aws_security_group" "openvpn-sg" {
   description = "Security group for all public internet traffic to the Openvpn server"
   vpc_id      = var.vpc_id
 
-  # Certbot Access
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   ingress {
     from_port   = 80
     to_port     = 80
@@ -74,4 +66,3 @@ resource "aws_security_group_rule" "openvpn-rds-ingress" {
   security_group_id        = aws_security_group.openvpn-rds-sg.id
   source_security_group_id = aws_security_group.openvpn-sg.id
 }
-
